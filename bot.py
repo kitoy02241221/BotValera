@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent
 EXCEL_FILE = BASE_DIR / "valera_table.xlsx"
 LOG_FILE = BASE_DIR / "bot.log"
 
-MODEL = "openai/gpt-oss-20b"
+model="openai/gpt-oss-120b",
 
 MAX_PRODUCTS_IN_CONTEXT = 35
 MAX_CONTEXT_LENGTH = 14000
