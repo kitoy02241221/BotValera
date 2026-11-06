@@ -32,16 +32,6 @@ MAX_PRODUCTS_IN_CONTEXT = 35
 MAX_CONTEXT_LENGTH = 14000
 
 
-app = (
-    Application.builder()
-    .token(TELEGRAM_TOKEN)
-    .connect_timeout(20)
-    .read_timeout(30)
-    .write_timeout(30)
-    .pool_timeout(20)
-    .build()
-)
-
 # ==================================================
 # ЛОГИРОВАНИЕ
 # ==================================================
@@ -893,6 +883,11 @@ async def error_handler(
 # ЗАПУСК
 # ==================================================
 
+
+# ==================================================
+# ЗАПУСК
+# ==================================================
+
 def main():
 
     try:
@@ -910,6 +905,10 @@ def main():
         app = (
             Application.builder()
             .token(TELEGRAM_TOKEN)
+            .connect_timeout(20)
+            .read_timeout(30)
+            .write_timeout(30)
+            .pool_timeout(20)
             .build()
         )
 
@@ -929,13 +928,19 @@ def main():
 
         logger.info("[TELEGRAM] Запускаем polling")
 
-        app.run_polling()
+        app.run_polling(
+            poll_interval=2,
+            timeout=30,
+            bootstrap_retries=-1
+        )
 
     except KeyboardInterrupt:
         logger.warning("Бот остановлен пользователем")
-except Exception:
-    logging.exception("Ошибка запуска бота")
-    raise
+
+    except Exception:
+        logger.exception("Ошибка запуска бота")
+        raise
+
 
 # ==================================================
 # ТОЧКА ВХОДА
