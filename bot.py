@@ -923,18 +923,9 @@ def main():
 
     except KeyboardInterrupt:
         logger.warning("Бот остановлен пользователем")
-
-    except Exception:
-        logger.exception(
-            "[КРИТИЧЕСКАЯ ОШИБКА] Ошибка запуска бота"
-        )
-
-        print(
-            "\nОшибка запуска. Подробности находятся в bot.log"
-        )
-
-        input("Нажмите Enter для выхода...")
-
+except Exception:
+    logging.exception("Ошибка запуска бота")
+    raise
 
 # ==================================================
 # ТОЧКА ВХОДА
