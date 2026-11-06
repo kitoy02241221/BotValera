@@ -32,6 +32,16 @@ MAX_PRODUCTS_IN_CONTEXT = 35
 MAX_CONTEXT_LENGTH = 14000
 
 
+app = (
+    Application.builder()
+    .token(TELEGRAM_TOKEN)
+    .connect_timeout(20)
+    .read_timeout(30)
+    .write_timeout(30)
+    .pool_timeout(20)
+    .build()
+)
+
 # ==================================================
 # ЛОГИРОВАНИЕ
 # ==================================================
